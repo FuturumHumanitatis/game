@@ -1,5 +1,5 @@
 /**
- * Median-cut colour quantization.
+ * Median-cut color quantization.
  *
  * Public API (attached to window):
  *   quantize(pixels, numColors)  → [{r, g, b, hex}]
@@ -81,7 +81,7 @@
   }
 
   /**
-   * Find index of the nearest palette colour (Euclidean in RGB).
+   * Find index of the nearest palette color (Euclidean in RGB).
    */
   function nearestColor(px, pal) {
     var best = 0, bestD = Infinity;
