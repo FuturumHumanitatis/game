@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Раскраска по номерам</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🎨 Раскраска по номерам</h1>
+    </header>
+
+    <!-- Picture selection screen -->
+    <div id="menu-screen" class="screen active">
+      <h2>Выберите картинку</h2>
+      <div id="picture-grid" class="picture-grid"></div>
+    </div>
+
+    <!-- Game screen -->
+    <div id="game-screen" class="screen">
+      <div class="game-toolbar">
+        <button id="btn-back" class="btn" title="Назад к выбору картинки">← Назад</button>
+        <span id="progress-text" class="progress-text">0%</span>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+      </div>
+      <div class="game-area">
+        <div class="canvas-container">
+          <svg id="game-canvas" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div id="palette" class="palette"></div>
+      </div>
+      <div id="completion-message" class="completion-message hidden">
+        🎉 Отлично! Картинка раскрашена!
+        <button id="btn-next" class="btn btn-primary">Следующая картинка</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/pictures.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
