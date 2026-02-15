@@ -7,40 +7,71 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="app">
-    <header>
-      <h1>🎨 Раскраска по номерам</h1>
-    </header>
+<div id="app">
+  <header>
+    <h1>🎨 Раскраска по номерам</h1>
+    <p>Загрузите любое изображение и раскрасьте его по номерам</p>
+  </header>
 
-    <!-- Picture selection screen -->
-    <div id="menu-screen" class="screen active">
-      <h2>Выберите картинку</h2>
-      <div id="picture-grid" class="picture-grid"></div>
+  <!-- ===== UPLOAD / MENU SCREEN ===== -->
+  <div id="menu-screen" class="screen active">
+    <div id="upload-area" class="upload-area">
+      <div class="upload-icon">📁</div>
+      <div class="upload-main">Нажмите или перетащите изображение сюда</div>
+      <div class="upload-sub">JPG, PNG, WEBP, GIF &mdash; любой размер</div>
+      <input type="file" id="file-input" accept="image/*">
     </div>
 
-    <!-- Game screen -->
-    <div id="game-screen" class="screen">
-      <div class="game-toolbar">
-        <button id="btn-back" class="btn" title="Назад к выбору картинки">← Назад</button>
-        <span id="progress-text" class="progress-text">0%</span>
-        <div class="progress-bar">
-          <div id="progress-fill" class="progress-fill"></div>
-        </div>
+    <div class="settings">
+      <div class="setting-group">
+        <label for="set-colors">Цветов:</label>
+        <input type="range" id="set-colors" min="4" max="20" value="10">
+        <span class="val" id="val-colors">10</span>
       </div>
-      <div class="game-area">
-        <div class="canvas-container">
-          <svg id="game-canvas" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"></svg>
-        </div>
-        <div id="palette" class="palette"></div>
-      </div>
-      <div id="completion-message" class="completion-message hidden">
-        🎉 Отлично! Картинка раскрашена!
-        <button id="btn-next" class="btn btn-primary">Следующая картинка</button>
+      <div class="setting-group">
+        <label for="set-grid">Размер сетки:</label>
+        <input type="range" id="set-grid" min="15" max="80" value="40">
+        <span class="val" id="val-grid">40</span>
       </div>
     </div>
+
+    <h2 class="samples-title">Или выберите готовый образец&nbsp;↓</h2>
+    <div id="samples-grid" class="samples-grid"></div>
   </div>
 
-  <script src="js/pictures.js"></script>
-  <script src="js/game.js"></script>
+  <!-- ===== GAME SCREEN ===== -->
+  <div id="game-screen" class="screen">
+    <div class="game-toolbar">
+      <button id="btn-back" class="btn">← Назад</button>
+      <span id="progress-text" class="progress-text">0&nbsp;%</span>
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+    </div>
+    <div class="game-area">
+      <div class="canvas-wrap" id="canvas-wrap">
+        <div class="zoom-controls">
+          <button class="zoom-btn" id="zoom-in" title="Приблизить">+</button>
+          <button class="zoom-btn" id="zoom-out" title="Отдалить">&minus;</button>
+          <button class="zoom-btn" id="zoom-fit" title="По размеру">⊡</button>
+        </div>
+        <canvas id="game-canvas"></canvas>
+      </div>
+      <div id="palette" class="palette"></div>
+    </div>
+    <div id="completion" class="completion hidden">
+      🎉 Отлично! Картинка полностью раскрашена!
+      <button id="btn-new" class="btn btn-primary">Новая картинка</button>
+    </div>
+  </div>
+</div>
+
+<!-- Loading overlay -->
+<div id="loading" class="loading-overlay hidden">
+  <div class="spinner"></div>
+  <span>Обработка изображения…</span>
+</div>
+
+<script src="js/quantize.js"></script>
+<script src="js/samples.js"></script>
+<script src="js/game.js"></script>
 </body>
 </html>
